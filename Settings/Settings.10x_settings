@@ -10,10 +10,10 @@
 OpenLastWorkspaceOnStartup:            false
 
 # Path of the Visual Studio VsDevCmd.bat or vcvars64.bat batch file to use for setting the Visual Studio build environment. Restart 10X after changing this value. Set to 'auto' to let 10x try and find the path
-VisualStudioEnvBat:                    C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/VsDevCmd.bat
+VisualStudioEnvBat:                    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat
 
 # Sync breakpoints and current config with Visual Studio
-VisualStudioSync:                      true
+VisualStudioSync:                      false
 
 # How often to backup unsaved files (ms)
 FileBackupFrequency:                   5000
@@ -101,10 +101,10 @@ ToolFontSize:                          default
 # Can be the font name, the name of the ttf file in a system fonts
 # folder or the full path to a ttf file.
 # Only supports fixed width fonts.
-OutputPanelFont:                       default
+OutputPanelFont:                       Consolas
 
 # The font size for the output panels. Set to default to use the ToolFontSize setting
-OutputPanelFontSize:                   default
+OutputPanelFontSize:                   9
 
 # Extra spacing between lines
 VerticalLineGap:                       1
@@ -127,7 +127,7 @@ HideMainMenu:                          true
 ShowMainMenuOnMouseHover:              true
 
 # whether to toggle the main menu on the alt key
-ToggleMainMenuOnAlt:                   true
+ToggleMainMenuOnAlt:                   false
 
 # How to show the workspace in the title bar if the menu is hidden (None, Name, Path)
 # Valid values: None, Name, Path, FolderAndName
@@ -169,7 +169,7 @@ MaxOpenTabs:                           20
 BackslashPaths:                        true
 
 # Reopen a file in the current panel even if it already open in a different panel
-ReopenFileInCurrentPanel:              false
+ReopenFileInCurrentPanel:              true
 
 # If the file hasn't been opened before open it in the currently active panel
 OpenFileInActivePanel:                 false
@@ -191,7 +191,7 @@ FindTextInitialValue:                  Current
 FindPanelCursorKeys:                   true
 
 # Close the find panel when the Enterkey is pressed
-CloseFindPanelOnEnter:                 false
+CloseFindPanelOnEnter:                 true
 
 # True to put the cursor at the start of the selected find text instead of the end
 ReverseFindSelection:                  false
@@ -305,13 +305,13 @@ CommentBlockIncrementLine:             false
 BracketSelectedText:                   true
 
 # Enable dragging of text with the mouse
-TextDrag:                              true
+TextDrag:                              false
 
 # True to make the End key update the rectangle select instead of going to the end of each multi-cursor line
 EndKeyUpdatesRectSelect:               true
 
 # Enable colouring of braces and brackets based on depth
-ColorBracesByDepth:                    false
+ColorBracesByDepth:                    true
 
 # Allow editing of read only files
 AllowEditingOfReadOnlyFiles:           true
@@ -326,10 +326,10 @@ Vim:                                   true
 AutoFormat:                            true
 
 # Automatically add a close brace after typing an open brace
-AutoAddCloseBrace:                     false
+AutoAddCloseBrace:                     true
 
 # Automatically add a close brace and format the braces
-AutoAddCloseBraceAndFormat:            false
+AutoAddCloseBraceAndFormat:            true
 
 # If true the open brace will be moved to the next line on auto-foramt
 OpenBraceOnNewLine:                    true
@@ -338,16 +338,16 @@ OpenBraceOnNewLine:                    true
 UpdateIndentsOnCloseBrace:             true
 
 # When pressing Enter between {} braces move the braces to new lines
-FormatBracesOnEnterSplit:              false
+FormatBracesOnEnterSplit:              true
 
 # Automatically add a close bracket after typing an open bracket
-AutoAddCloseBracket:                   false
+AutoAddCloseBracket:                   true
 
 # Align function arguments lines to the function open bracket
 BracketAlignFunctionArgs:              true
 
 # Align conditional lines to the open bracket
-BracketAlignConditionals:              false
+BracketAlignConditionals:              true
 
 # Align lines in assignment statements to equals char
 AlignToEquals:                         false
@@ -356,7 +356,7 @@ AlignToEquals:                         false
 IndentCaseStatements:                  true
 
 # Automatically fix . and -> depending if the variable is a pointer
-AutoFixIndirection:                    false
+AutoFixIndirection:                    true
 
 # Typing /** will add a */, Enter will add a new line starting with *
 AutoFormatBlockComments:               false
@@ -383,13 +383,13 @@ PerforceAutoOpenForEdit:               true
 # 
 
 # Build before starting debugging using the StartDebugging command
-BuildBeforeStartDebugging:             true
+BuildBeforeStartDebugging:             false
 
 # Build before running the exe
-BuildBeforeRun:                        true
+BuildBeforeRun:                        false
 
 # Stop the debugger when a full build starts
-StopDebuggingOnBuild:                  false
+StopDebuggingOnBuild:                  true
 
 # Regular expression used to identify warnings in the build output
 BuildWarningRegex:                     
@@ -398,7 +398,7 @@ BuildWarningRegex:
 BuildErrorRegex:                       
 
 # Close the build output panel after a successful build
-CloseBuildOutputAfterBuild:            
+CloseBuildOutputAfterBuild:            false
 
 # 
 # Debug
@@ -455,7 +455,7 @@ AutocompleteInComments:                false
 ExactMatchAutoComplete:                else,endif,once
 
 # Typedefs and using aliases will be resolved in GotoSymbolDefintion
-GotoDefResolvesTypedefs:               false
+GotoDefResolvesTypedefs:               true
 
 # If true, goto definition on function calls will go to the function implementation instead of the declaration
 GotoFunctionImplementation:            true
