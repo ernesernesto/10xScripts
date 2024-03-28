@@ -39,8 +39,6 @@ PerforceTimeout:          40
 # enable or disable p4 config txt files
 PerforceEnableP4Config:   true
 
-ClangFormat.Style: 	      Mozilla
-
-FormatOnSave:             true
+ClangFormat.Style: 	      file
 
 RemedyBG.Hook: 			  true

@@ -1690,14 +1690,15 @@ def HandleCommandModeChar(char):
         N10X.Editor.PopUndoGroup()
         should_save = True
 
-    elif not g_SneakEnabled and c == "s":
-        x, y = N10X.Editor.GetCursorPos()
-        N10X.Editor.PushUndoGroup()
-        SetSelection((x, y), (x + repeat_count-1, y))
-        N10X.Editor.ExecuteCommand("Cut")
-        N10X.Editor.PopUndoGroup()
-        EnterInsertMode()
-        should_save = True
+    # Unused for save
+    # elif not g_SneakEnabled and c == "s":
+        # x, y = N10X.Editor.GetCursorPos()
+        # N10X.Editor.PushUndoGroup()
+        # SetSelection((x, y), (x + repeat_count-1, y))
+        # N10X.Editor.ExecuteCommand("Cut")
+        # N10X.Editor.PopUndoGroup()
+        # EnterInsertMode()
+        # should_save = True
         # NOTE- incomplete. if you "s" and type some stuff, a single "undo" should remove the typed stuff AND the deleted character
 
     # Searching
@@ -1732,12 +1733,13 @@ def HandleCommandModeChar(char):
             if not MoveToLineText(action, search):
                 return
 
-    elif not g_SneakEnabled and (m := re.match("([fFtT;,])(.?)", c)):
-        for i in range(repeat_count):
-            action = m.group(1)
-            search = m.group(2)
-            if not MoveToLineText(action, search):
-                return
+    # Unused for leader
+    # elif not g_SneakEnabled and (m := re.match("([fFtT;,])(.?)", c)):
+        # for i in range(repeat_count):
+            # action = m.group(1)
+            # search = m.group(2)
+            # if not MoveToLineText(action, search):
+                # return
 
     elif c == "n":
         if g_ReverseSearch:
@@ -2299,18 +2301,28 @@ def HandleCommandModeChar(char):
     # File
 
     elif c == "S":
-        N10X.Editor.ExecuteCommand("SaveFile")
+        SaveFileAndFormat()
 
     elif c == "Q":
         N10X.Editor.ExecuteCommand("CloseFile")
 
-    # Symbols
+    # Leader
 
-    elif c == "K":
+    elif c == ",":
+        #Vim leader, don't do anything
+        return
+
+    elif c == ",k":
         N10X.Editor.ExecuteCommand("ShowSymbolInfo")
 
-    elif c == "gd":
+    elif c == ",d":
         N10X.Editor.ExecuteCommand("GotoSymbolDefinition")
+
+    elif c == ",f":
+        N10X.Editor.ExecuteCommand("FindFunction")
+
+    elif c == ",r":
+        N10X.Editor.ExecuteCommand("FindSymbolReferences")
     
     else:
         print("[vim] Unknown command!")
@@ -2374,8 +2386,8 @@ def HandleCommandModeKey(key, shift, control, alt):
     elif key == "V" and control:
         pass # todo
    
-    elif key == "s" and control:
-        N10X.Editor.ExecuteCommand("SaveFile")
+    elif key == "S" and control:
+        SaveFileAndFormat()
 
     elif key == "Z" and control:
         N10X.Editor.ExecuteCommand("Undo")
@@ -2812,6 +2824,9 @@ def HandleVisualModeChar(char):
         SetCursorPos(start[0], start[1])
         EnterCommandMode()
         should_save = True
+    
+    elif c == "=":
+        N10X.Editor.ExecuteCommand("ClangFormatSelection")
 
     else:
         print("[vim] Unknown command!")
@@ -2970,7 +2985,7 @@ def HandleCommandPanelCommand(command):
         return True
 
     if command == ":w" or command == ":W":
-        N10X.Editor.ExecuteCommand("SaveFile")
+        SaveFileAndFormat()
         return True
 
     if command == ":wa":
@@ -2978,7 +2993,7 @@ def HandleCommandPanelCommand(command):
         return True
 
     if command == ":wq":
-        N10X.Editor.ExecuteCommand("SaveFile")
+        SaveFileAndFormat()
         N10X.Editor.ExecuteCommand("CloseFile")
         return True
 
@@ -2995,6 +3010,10 @@ def HandleCommandPanelCommand(command):
     if len(split) == 2 and split[1].isdecimal(): 
         SetCursorPos(y=int(split[1]) - 1)
         return True
+
+def SaveFileAndFormat():
+    N10X.Editor.ExecuteCommand("SaveFile")
+    N10X.Editor.ExecuteCommand("ClangFormatFile")
 
 #------------------------------------------------------------------------
 def EnableVim():

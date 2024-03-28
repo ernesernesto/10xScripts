@@ -8,12 +8,6 @@ Control O:                   OpenFile
 # Close the current file
 Control F4:                  CloseFile
 
-# Save the current file
-Control S:                   SaveFile
-
-# Save all files
-Control S, Control S:        SaveAll
-
 # Show the Find File panel
 Control P:                   FindFile
 
