@@ -3012,8 +3012,14 @@ def HandleCommandPanelCommand(command):
         return True
 
 def SaveFileAndFormat():
+    file_name = N10X.Editor.GetCurrentFilename()
+    file_name, file_extension = os.path.splitext(file_name)
+
+    handle_extension = [".h", ".cpp", ".cs"]
+    if file_extension in handle_extension:
+        N10X.Editor.ExecuteCommand("ClangFormatFile")
+
     N10X.Editor.ExecuteCommand("SaveFile")
-    N10X.Editor.ExecuteCommand("ClangFormatFile")
 
 #------------------------------------------------------------------------
 def EnableVim():
