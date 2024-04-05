@@ -278,7 +278,7 @@ UpdateIndentsOnPaste:                  true
 ExtendEmptyLines:                      false
 
 # The default WordWrap setting when opening files
-WordWrap:                              false
+WordWrap:                              true
 
 # Show whitespace
 ShowWhitespace:                        false
