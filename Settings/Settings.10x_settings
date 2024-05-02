@@ -356,7 +356,7 @@ AlignToEquals:                         false
 IndentCaseStatements:                  true
 
 # Automatically fix . and -> depending if the variable is a pointer
-AutoFixIndirection:                    true
+AutoFixIndirection:                    false
 
 # Typing /** will add a */, Enter will add a new line starting with *
 AutoFormatBlockComments:               false
@@ -389,7 +389,7 @@ BuildBeforeStartDebugging:             false
 BuildBeforeRun:                        false
 
 # Stop the debugger when a full build starts
-StopDebuggingOnBuild:                  true
+StopDebuggingOnBuild:                  false
 
 # Regular expression used to identify warnings in the build output
 BuildWarningRegex:                     

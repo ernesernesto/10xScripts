@@ -2387,7 +2387,7 @@ def HandleCommandModeKey(key, shift, control, alt):
         pass # todo
    
     elif key == "S" and control:
-        SaveFileAndFormat()
+        N10X.Editor.ExecuteCommand("SaveFile")
 
     elif key == "Z" and control:
         N10X.Editor.ExecuteCommand("Undo")
@@ -2490,7 +2490,7 @@ def HandleInsertModeKey(key, shift, control, alt):
     global g_InsertBuffer
     global g_PerformingDot
 
-    if key == "Escape" and not N10X.Editor.IsShowingAutocomplete():
+    if key == "Escape":
         EnterCommandMode()
         return False
 
@@ -2605,14 +2605,11 @@ def HandleVisualModeChar(char):
     elif c == "D":
         N10X.Editor.PushUndoGroup()
         start_pos, end_pos = N10X.Editor.GetCursorSelection(cursor_index=1)
-        new_start_pos_x, new_start_pos_y = GetFirstNonWhitespace(start_pos[1])
-        new_end_pos_x = GetLineLength(end_pos[1])
+        _, new_start_pos_y = GetFirstNonWhitespace(start_pos[1])
         new_end_pos_y = end_pos[1]
         
         EnterCommandMode()
-        N10X.Editor.SetSelection((new_start_pos_x, new_start_pos_y), (new_end_pos_x, new_end_pos_y))
-        N10X.Editor.ExecuteCommand("Cut")
-        SetCursorPos(start_pos[0], start_pos[1])
+        SetLineSelection(new_start_pos_y, new_end_pos_y)
         N10X.Editor.ExecuteCommand("Cut")
         SetCursorPos(start_pos[0], start_pos[1])
         EnterCommandMode()
