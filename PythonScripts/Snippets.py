@@ -1,6 +1,7 @@
 #------------------------------------------------------------------------
 import N10X
 import time
+import os
 
 #------------------------------------------------------------------------
 def IsWhitespace(c):
@@ -25,6 +26,7 @@ prev_pos = (-1, -1)
 
 #------------------------------------------------------------------------
 # when typing the chars //- in sequence replace with //----------------------
+# when typing the chars #-- in Python scripts replace with #----------------------
 def CommentSeparatorSnippet(c):
     global sequence
     global key_times
@@ -34,11 +36,16 @@ def CommentSeparatorSnippet(c):
     if prev_pos != (-1, -1) and (x - 1, y) != prev_pos:
         sequence = "   "
     prev_pos = (x, y)
-    
+
     sequence = sequence[1:] + c[0]
     key_times = key_times[1:] + [GetTime()]
 
-    if sequence == "//-" and GetTime() - key_times[0] < 1000 and IsStartOfLine(x - 3, y):
+    filename = N10X.Editor.GetCurrentFilename()
+    ext = os.path.splitext(filename)[1]
+
+    if ext == ".py" and sequence == "#--" and GetTime() - key_times[0] < 1000 and IsStartOfLine(x - 3, y):
+        N10X.Editor.InsertText("----------------------------------------------------------------------")
+    elif ext != ".py" and sequence == "//-" and GetTime() - key_times[0] < 1000 and IsStartOfLine(x - 3, y):
         N10X.Editor.InsertText("-----------------------------------------------------------------------")
 
 #------------------------------------------------------------------------

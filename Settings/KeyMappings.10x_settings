@@ -258,7 +258,7 @@ Control Alt F7:              RebuildActiveWorkspace
 Control F7:                  BuildCurrentFile
 
 # Go to the previous build error
-Shift F8:                    GotoPrevBuildError
+Shift F8:                    GotoPrevBuildWarningOrError
 
 # Cancel the current build
 Control Cancel:              CancelBuild
@@ -499,6 +499,16 @@ Control Shift S:             Search
 
 # Open Search Panel
 Control Shift F:             Search
+
+# Open the current file at the current line in Visual Studio
+Alt X:         OpenCurrentFileInVS
+
+# Insert prev autocomplete
+Shift F14:     InsertPrevAutocomplete
+
+# Insert next autocomplete
+F14:           InsertNextAutocomplete
+
 
 # Toggle Build Panel or Close
 Alt B: 					 	 ToggleBuildPanelOrBuild

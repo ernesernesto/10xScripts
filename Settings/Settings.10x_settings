@@ -49,6 +49,13 @@ SaveAllOnLoseFocus:                    false
 # Update to the early access builds. Builds are released on early access before general release.
 EarlyAccessUpdates:                    false
 
+# SaveAs dialog will use the path of the previously focused file
+SaveAsUsesPrevPanelPath:               true
+
+# Path of the Visual Studio install. Used to find the VisualStudioEnvBat path and to start the VS debugger. eg C:\Program Files (x86)\Microsoft Visual Studio\2019\Community. Set to `default` to automatically find the path to the latest installed VS. Requires restart of 10x.
+VisualStudioInstallPath:               default
+
+
 # 
 # Accessibility
 # 
@@ -163,7 +170,7 @@ CursorBlinkRate:                       auto
 SwitchFileMode:                        All
 
 # The maximum number of tabs to keep open
-MaxOpenTabs:                           20
+MaxOpenTabs:                           100
 
 # Use backslashes in paths
 BackslashPaths:                        true
@@ -245,6 +252,13 @@ Column1Presets:                        *.h,*.hh,*.hpp,*.h++,*.hp,*.hxx,*.inl
 
 # File wildcards for files that should automatically open in column 2. Separated by commas.
 Column2Presets:                        *.bat,*.py
+
+# Show line numbers relative to the current line
+RelativeLineNumbers:                   false
+
+# The tab panel mode. Top, Left or Right
+TabPanelMode:                          Top
+
 
 # 
 # Edit
@@ -364,12 +378,23 @@ AutoFormatBlockComments:               false
 # New comment lines will be started with * when AutoFormatBlockComments is enabled
 AutoFormatBlockCommentsNewLines:       false
 
+# If InsertMode is set to spaces backspace will delete TabWidth spaces
+BackspaceDeletesTabs:                  false
+
+# If true the the PrevLocation and NextLocation commands will include docked tool windows
+LocationHistoryIncludesToolPanels:     false
+
+
 # 
 # Formatting
 # 
 
 # True to add a space after an open bracket and before a close bracket
 SpaceBrackets:                         false
+
+# When aligning to a function call open bracket with tab indent mode use tabs up to the current indent level and then use spaces
+UseSpacesAfterCurrentIndent:           false
+
 
 # 
 # Perforce
@@ -478,6 +503,13 @@ ParserMaxFileSize:                     52428800
 # Allow preprocessor lines to be indented
 AllowPreprocessorLineIndenting:        true
 
+# Use fuzzy matching in the FindSymbol panel
+FindSymbolFuzzyMatching:               true
+
+# List of comma separated defines for the parser
+GlobalDefines:                         
+
+
 # 
 # WorkspaceSearch
 # 
@@ -506,6 +538,10 @@ Search.SortOpenFilesByOpenFrequency:   true
 
 # If true, go to a workspace search result will automatically set the find text
 Search.SetFindText:                    true
+
+# Files in these directories will be added to the workspace search set
+Search.GlobalDirectories:              
+
 
 # 
 # Misc
