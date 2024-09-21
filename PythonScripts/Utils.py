@@ -37,7 +37,8 @@ def SortLines():
 def TrimLines():
 
     N10X.Editor.PushUndoGroup()
-    
+    N10X.Editor.BeginTextUpdate()
+
     line_count = N10X.Editor.GetLineCount()
 
     for i in range(line_count):
@@ -45,6 +46,7 @@ def TrimLines():
         line = line.rstrip()
         N10X.Editor.SetLine(i, line)
 
+    N10X.Editor.EndTextUpdate()
     N10X.Editor.PopUndoGroup()
 
 #------------------------------------------------------------------------

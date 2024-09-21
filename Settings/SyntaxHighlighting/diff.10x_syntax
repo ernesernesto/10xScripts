@@ -36,7 +36,7 @@ REGEX(^\d\+\(,\d\+\)\=[cda]\d\+\>.*)
 
 Language.Custom7:
 REGEX(^diff\>.*)
-REGEX(^+++ .*)
+REGEX(^\+\+\+ .*)
 REGEX(^Index: .*)
 REGEX(^==== .*)
 REGEX(^\*\*\* .*)
@@ -44,7 +44,7 @@ REGEX(^--- .*)
 
 # Used by git
 Language.Custom1:
-REGEX(^index \x\x\x\x.*)
+REGEX(^index [0-9a-fA-F]+,[0-9a-fA-F]+..[0-9a-fA-F]+)
 
 Language.Custom6:
 REGEX(^#.*)

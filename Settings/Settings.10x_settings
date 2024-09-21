@@ -259,6 +259,12 @@ RelativeLineNumbers:                   false
 # The tab panel mode. Top, Left or Right
 TabPanelMode:                          Top
 
+# Show the match count in the find panel text box
+ShowFindTextMatchCount:                false
+
+# Gap to the right of columns
+ColumnGap:                             0
+
 
 # 
 # Edit
