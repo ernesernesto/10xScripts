@@ -7,6 +7,8 @@ from Vim import *
 # Designed to be edited locally so users can avoid having to merge Vim.py
 #------------------------------------------------------------------------
 
+g_PaneSwap = False
+
 """
 Key handler for command mode
 """
@@ -30,10 +32,14 @@ def UserHandleCommandModeKey(key: Key) -> UserHandledResult:
     #
     # Add own keybindings below
     #
+    if key == Key("W", control=True):
+        g_PaneSwap = True
+        return UserHandledResult.HANDLED
 
-    if key == Key("H", control=True):
+    elif key == Key("H", control=True):
         if g_PaneSwap:
             N10X.Editor.ExecuteCommand("MovePanelFocusLeft")
+            g_PaneSwap = False 
         else: 
             MoveToWordStart()
         return UserHandledResult.HANDLED
@@ -41,6 +47,7 @@ def UserHandleCommandModeKey(key: Key) -> UserHandledResult:
     elif key == Key("L", control=True):
         if g_PaneSwap: 
             N10X.Editor.ExecuteCommand("MovePanelFocusRight")
+            g_PaneSwap = False
         else: 
             MoveToNextWordStart()
         return UserHandledResult.HANDLED
@@ -48,6 +55,7 @@ def UserHandleCommandModeKey(key: Key) -> UserHandledResult:
     elif key == Key("J", control=True):
         if g_PaneSwap: 
             N10X.Editor.ExecuteCommand("MovePanelFocusDown")
+            g_PaneSwap = False
         else:
             MoveToNextParagraphEnd()
         return UserHandledResult.HANDLED
@@ -55,6 +63,7 @@ def UserHandleCommandModeKey(key: Key) -> UserHandledResult:
     elif key == Key("K", control=True):
         if g_PaneSwap: 
             N10X.Editor.ExecuteCommand("MovePanelFocusUp")
+            g_PaneSwap = False
         else:
             MoveToPreviousParagraphBegin()
         return UserHandledResult.HANDLED
@@ -75,6 +84,10 @@ def UserHandleCommandModeKey(key: Key) -> UserHandledResult:
     elif key == Key("S", control=True):
         SaveFileAndFormat()
         return UserHandledResult.HANDLED
+
+    elif key.key != "Control":
+        # Reset pane swap only if next key was not just control
+        g_PaneSwap = False
 
     # Default - do nothing
     return UserHandledResult.UNHANDLED
@@ -130,7 +143,9 @@ def UserHandleCommandline(command) -> UserHandledResult:
         return UserHandledResult.HANDLED
         
     elif command == ":q!" or command == ":x!":
-        N10X.Editor.ExecuteCommand("CloseFile")
+        N10X.Editor.ExecuteCommand("CloseAllTabs")
+        #N10X.Editor.ExecuteCommand("CloseFile")
+        
         return UserHandledResult.HANDLED
 
 
