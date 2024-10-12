@@ -3185,6 +3185,10 @@ def HandleVisualModeChar(char):
         should_save = True
     
     elif c == "i" or c == "a":
+        # Stub for text-object motions.
+        return
+    
+    elif c == "I" or c == "A":
         EnterInsertMode()
 
     elif c == "ip":
