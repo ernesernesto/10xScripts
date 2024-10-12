@@ -156,7 +156,7 @@ def SaveFileAndFormat():
     file_name = N10X.Editor.GetCurrentFilename()
     file_name, file_extension = os.path.splitext(file_name)
 
-    handle_extension = [".h", ".cpp", ".cs"]
+    handle_extension = [".h", ".cpp", ".c", ".cs"]
     if file_extension in handle_extension:
         N10X.Editor.ExecuteCommand("ClangFormatFile")
 
