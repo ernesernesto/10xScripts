@@ -116,6 +116,16 @@ OutputPanelFontSize:                   9
 # Extra spacing between lines
 VerticalLineGap:                       1
 
+# The font for the status bar. Set to Default to use the EditorFont setting.
+# Can be the font name, the name of the ttf file in a system fonts
+# folder or the full path to a ttf file.
+# Only supports fixed width fonts.
+StatusBarFont:                         default
+
+# The font size for the status bar. Set to default to use the UIFontSize setting
+StatusBarFontSize:                     default
+
+
 # 
 # UI
 # 
@@ -390,6 +400,9 @@ BackspaceDeletesTabs:                  false
 # If true the the PrevLocation and NextLocation commands will include docked tool windows
 LocationHistoryIncludesToolPanels:     false
 
+# Update the indentation of braces as they are typed
+AutoIndentBraces:                      true
+
 
 # 
 # Formatting
@@ -429,7 +442,7 @@ BuildWarningRegex:
 BuildErrorRegex:                       
 
 # Close the build output panel after a successful build
-CloseBuildOutputAfterBuild:            false
+CloseBuildOutputAfterBuild:            true
 
 # 
 # Debug
@@ -514,6 +527,9 @@ FindSymbolFuzzyMatching:               true
 
 # List of comma separated defines for the parser
 GlobalDefines:                         
+
+# Limit on the number of token the preprocessor will evaluate
+MaxPreprocessorTokenCount:             10000
 
 
 # 

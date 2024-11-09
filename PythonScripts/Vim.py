@@ -1354,12 +1354,12 @@ def HandleCommandModeChar(char):
             MoveCursorPos(x_delta=-1)
 
     elif c == "j":
-        override_horizontal_target = True if g_Mode == Mode.VISUAL_BLOCK else False
+        override_horizontal_target = True
         for i in range(repeat_count):
             MoveCursorPos(y_delta=1, override_horizontal_target=override_horizontal_target)
 
     elif c == "k":
-        override_horizontal_target = True if g_Mode == Mode.VISUAL_BLOCK else False
+        override_horizontal_target = True
         for i in range(repeat_count):
             MoveCursorPos(y_delta=-1, override_horizontal_target=override_horizontal_target)
 
@@ -1542,9 +1542,15 @@ def HandleCommandModeChar(char):
             MoveToNextWordStart()
         end = N10X.Editor.GetCursorPos()
         if start != end:
-            end = (max(0, end[0] - 1), end[1])
-            SetSelection(start, end)
+            if start[0] > end[0]:
+                SetCursorPos(start[0], start[1])
+                MoveToEndOfLine()
+                end = N10X.Editor.GetCursorPos()
+            else:
+                end = (max(0, end[0] - 1), end[1])
+            SetSelection(start, end)       
             N10X.Editor.ExecuteCommand("Cut")
+
         N10X.Editor.PopUndoGroup()
         should_save = True
 
@@ -1873,6 +1879,11 @@ def HandleCommandModeChar(char):
         g_ReverseSearch = True
         g_LastJumpPoint = N10X.Editor.GetCursorPos()
         N10X.Editor.ExecuteCommand("FindInFile")
+
+    elif c == ";":
+        N10X.Editor.ExecuteCommand("ShowCommandPanel")
+        N10X.Editor.SetCommandPanelText(":")
+        return UserHandledResult.HANDLED
 
     elif g_SneakEnabled and (m := re.match("([fFtTsS;,])(.{0,2})", c)):
         for i in range(repeat_count):
@@ -2549,10 +2560,10 @@ def HandleCommandModeChar(char):
         N10X.Editor.ExecuteCommand("GotoSymbolDefinition")
 
     elif c == ",f":
-        N10X.Editor.ExecuteCommand("FindFunction")
+        N10X.Editor.ExecuteCommand("FindSymbolReferences")
         
     elif c == ",r": #elif c == "gr":
-        N10X.Editor.ExecuteCommand("FindSymbolReferences")
+        N10X.Editor.ExecuteCommand("FindFunction")
 
     elif c == "=":
         N10X.Editor.ExecuteCommand("ClangFormatSelection")
@@ -3090,11 +3101,11 @@ def HandleVisualModeChar(char):
 
     elif c == "k":
         for _ in range(repeat_count):
-            MoveCursorPos(y_delta=-1, override_horizontal_target=False)
+            MoveCursorPos(y_delta=-1, override_horizontal_target=True)
 
     elif c == "j":
         for _ in range(repeat_count):
-            MoveCursorPos(y_delta=1, override_horizontal_target=False)
+            MoveCursorPos(y_delta=1, override_horizontal_target=True)
 
     elif c == "w":
         for _ in range(repeat_count):

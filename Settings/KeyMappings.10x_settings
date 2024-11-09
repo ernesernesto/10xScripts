@@ -159,7 +159,7 @@ Control M, Control M:        ToggleCollapseExpandRegion
 Control M, Control L:        ToggleCollapseExpandAllRegions
 
 # Toggle the workspace explorer panel
-Control Shift E:             ToggleWorkspaceExplorer
+F1:             			 ToggleWorkspaceExplorer
 
 # Move the current panel left
 Control Alt Left:            MovePanelLeft
@@ -249,7 +249,7 @@ PageDown:                    AutocompletePageDown
 Control Shift Space:         ShowFunctionArgsInfo
 
 # Build the currently active workspace
-F7:                          BuildActiveWorkspace
+F7:             			 BuildActiveWorkspace
 
 # Rebuild the currently active workspace
 Control Alt F7:              RebuildActiveWorkspace
@@ -434,9 +434,6 @@ Shift PageDown:              SelectPageDown
 # Show the symbol info for the current symbol
 Control K, Control I:        ShowSymbolInfo
 
-# Internet search for the current word or selection using the InternetSearchCommand setting
-F1:                          InternetSearch
-
 # Zoom in on editor text (increase font size)
 Control Shift .:             ZoomIn
 
@@ -511,4 +508,4 @@ F14:           InsertNextAutocomplete
 
 
 # Toggle Build Panel or Close
-Alt B: 					 	 ToggleBuildPanelOrBuild
+Control Shift B: 		   ToggleBuildPanelOrBuild

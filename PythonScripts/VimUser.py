@@ -76,10 +76,10 @@ def UserHandleCommandModeKey(key: Key) -> UserHandledResult:
         MoveToEndOfLine()
         return UserHandledResult.HANDLED
 
-    elif key == Key(":") or key == Key(";"):
-        N10X.Editor.ExecuteCommand("ShowCommandPanel")
-        N10X.Editor.SetCommandPanelText(":")
-        return UserHandledResult.HANDLED
+    #elif key == Key(":") or key == Key(";"):
+    #    N10X.Editor.ExecuteCommand("ShowCommandPanel")
+    #    N10X.Editor.SetCommandPanelText(":")
+    #    return UserHandledResult.HANDLED
 
     elif key == Key("S", control=True):
         SaveFileAndFormat()
