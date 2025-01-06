@@ -3286,44 +3286,46 @@ def HandleSuspendedModeKey(key: Key):
 
 #------------------------------------------------------------------------
 def UpdateCursorMode():
+    scopeName = N10X.Editor.GetCurrentScopeName()
+
     if g_Command or g_SingleReplace or g_MultiReplace:
         N10X.Editor.SetCursorVisible(0, True)
         N10X.Editor.SetCursorMode("HalfBlock")
-        N10X.Editor.SetStatusBarText(g_Command)
+        N10X.Editor.SetStatusBarText(scopeName + " | " + g_Command)
     elif g_Mode == Mode.INSERT:
         N10X.Editor.SetCursorVisible(0, True)
         N10X.Editor.SetCursorMode("Line")
-        N10X.Editor.SetStatusBarText("-- INSERT --")
+        N10X.Editor.SetStatusBarText(scopeName + " | " + "-- INSERT --")
     elif g_Mode == Mode.VISUAL:
         N10X.Editor.SetCursorVisible(0, True)
         N10X.Editor.SetCursorMode("Block")
-        N10X.Editor.SetStatusBarText("-- VISUAL --")
+        N10X.Editor.SetStatusBarText(scopeName + " | " + "-- VISUAL --")
     elif g_Mode == Mode.VISUAL_LINE:
         N10X.Editor.SetCursorVisible(0, True)
         N10X.Editor.SetCursorMode("Block")
-        N10X.Editor.SetStatusBarText("-- VISUAL LINE --")
+        N10X.Editor.SetStatusBarText(scopeName + " | " + "-- VISUAL LINE --")
     elif g_Mode == Mode.VISUAL_BLOCK:
         N10X.Editor.SetCursorVisible(0, True)
         N10X.Editor.SetCursorMode("Block")
-        N10X.Editor.SetStatusBarText("-- VISUAL BLOCK--")
+        N10X.Editor.SetStatusBarText(scopeName + " | " + "-- VISUAL BLOCK--")
     elif g_Mode == Mode.SUSPENDED:
         N10X.Editor.SetCursorVisible(0, True)
         N10X.Editor.SetCursorMode("Line")
-        N10X.Editor.SetStatusBarText("-- VIM DISABLED --")
+        N10X.Editor.SetStatusBarText(scopeName + " | " + "-- VIM DISABLED --")
     elif g_Mode == Mode.COMMANDLINE:
         N10X.Editor.SetCursorVisible(0, False)
         N10X.Editor.SetCursorMode("Block")
         # Insert cursor char into commandline text
         text = g_CommandlineText[:g_CommandlineTextCursorPos] + g_CommandlineCursorChar + g_CommandlineText[g_CommandlineTextCursorPos:]
-        N10X.Editor.SetStatusBarText(text)
+        N10X.Editor.SetStatusBarText(scopeName + " | " + text)
     elif g_CommandlineResultText:
         N10X.Editor.SetCursorVisible(0, True)
         N10X.Editor.SetStatusBarText(g_CommandlineResultText)
-        N10X.Editor.SetCursorMode("Block")
+        N10X.Editor.SetCursorMode(scopeName + " | " + "Block")
     else:
         N10X.Editor.SetCursorVisible(0, True)
         N10X.Editor.SetCursorMode("Block")
-        N10X.Editor.SetStatusBarText("")
+        N10X.Editor.SetStatusBarText(scopeName)
 
 #------------------------------------------------------------------------
 # Recording
@@ -3501,7 +3503,6 @@ def InitialiseVim():
     EnableVim()
 
 #------------------------------------------------------------------------
-
 
 # Prevent against being registered multiple times as VimUser.py imports Vim.py
 if __name__ == "__main__":

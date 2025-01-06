@@ -356,7 +356,7 @@ Vim:                                   true
 AutoFormat:                            true
 
 # Automatically add a close brace after typing an open brace
-AutoAddCloseBrace:                     true
+AutoAddCloseBrace:                     false
 
 # Automatically add a close brace and format the braces
 AutoAddCloseBraceAndFormat:            true
@@ -383,10 +383,10 @@ BracketAlignConditionals:              true
 AlignToEquals:                         false
 
 # true to indent case statements inside switch case block
-IndentCaseStatements:                  true
+IndentCaseStatements:                  false
 
 # Automatically fix . and -> depending if the variable is a pointer
-AutoFixIndirection:                    false
+AutoFixIndirection:                    true
 
 # Typing /** will add a */, Enter will add a new line starting with *
 AutoFormatBlockComments:               false

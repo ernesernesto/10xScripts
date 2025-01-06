@@ -474,7 +474,7 @@ MouseForwardButton:          NextLocation
 AppsKey:                     ShowContextMenu
 
 # Go to the next result in the last search or build operation
-F8:                          GotoNextResult
+F8:                          GotoNextBuildWarningOrError
 
 # Move selection up by a page
 Shift Alt PageUp:            SelectPageUp
